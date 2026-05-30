@@ -112,7 +112,7 @@ $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J
 #thm[Class Equation][$|G| = |Z(G)| + sum_(x in T) [G : C_G(x)]$ ($T$ = non-central class reps).]
 #thm[Cauchy's Theorem][If $p | |G|$, $exists$ element of order $p$.]
 #prf[Abelian: decompose into cyclic factors. Non-abelian: if $p | [G:C_G(x)]$ $forall x in T$, then $p | |Z(G)|$ (reduce to abelian). Else $p | |C_G(x)|$ for some $x$, use induction.]
-#thm[Centre of Non-Abelian Groups][If $G$ non-abelian, $G \/ Z(G)$ is not cyclic. $Z(G)$ is union of 1-elt classes. $|Z(G)| lt.eq |G|/4$.]
+#thm[Centre of Non-Abelian Groups][If $G$ non-abelian, $G \/ Z(G)$ is not cyclic. $Z(G)$ is union of 1-elt classes. $|Z(G)| lt.eq |G| \/ 4$.]
 *Conjugates:* A finite group $G$ is never a union of conjugates of a proper subgroup.
 #thm[Normal Union][$H lt.tri.eq G$ iff $H$ is a union of conjugacy classes.]
 #defn[Normaliser][$N_G(H) = {g : g H = H g}$. $H lt.tri.eq N_G(H)$, \# conjugates of $H$ is $[G : N_G(H)]$.]
@@ -167,8 +167,8 @@ $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J
 #defn[Ring][$(R, +, times)$ abelian gp under $+$, semigroup under $times$, distributive. *Commutative*: $a b = b a$. *Unity*: exists $1$ s.t. $1 a = a 1 = a$. *Unit*: elt w/ mult. inverse. *Division Ring*: unity + all non-zero are units. *Field*: commutative division ring.]
 #defn[Subring Test][Non-empty $S$ is subring if $a - b in S$ and $a b in S quad forall a,b$.]
 #defn[Quaternions $HH$][$a + b i + c j + d k$, $i^2 = j^2 = k^2 = -1, i j = k, j k = i, k i = j$. Non-commutative.]
-#thm[Quaternion Properties][$HH$ is non-commutative division ring. $q^(-1) = overline(q) / ||q||^2$ where $q = a+b i+c j+d k, overline(q) = a - b i - c j - d k, ||q|| = sqrt(a^2 + b^2 + c^2 + d^2)$.]
-*Properties:* $overline(u v) = overline(v) overline(u), ||u v|| = ||u|| ||v||$.
+#thm[Quaternion Properties][$HH$ is non-commutative division ring. $q^(-1) = overline(q) / norm(q)^2$ where $q = a+b i+c j+d k, overline(q) = a - b i - c j - d k, norm(q) = sqrt(a^2 + b^2 + c^2 + d^2)$.]
+*Properties:* $overline(u v) = overline(v) overline(u), norm(u v) = norm(u) norm(v)$.
 #thm[Euler's Four-Square Identity][$(a^2+b^2+c^2+d^2)(e^2+f^2+g^2+h^2)$ is sum of 4 squares.]
 *Wedderburn's Theorem:* Every finite division ring is a field.
 
@@ -201,6 +201,6 @@ $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J
 
 == Key Techniques
 
-*Order counting:* Elts of order $k$ come in groups of $phi(k)$ (from cyclic subgps). Non-cyclic order 55 has $4r$ elts of order 5, $10s$ of order 11, $4r + 10s = 54$. *Order 2 elements:* Even order group has odd \# of order 2 elts (non-self-inverse pair up). *Subgroup Intersections:* If $|H|^2 > |G|$ and $|J|^2 > |G|$, then $H inter J eq.not {e}$ since $|H inter J| = (|H||J|) \/ |H J| gt.eq (|H||J|) \/ |G| > 1$. *$S_n$ Generators:* Transpositions ${(1, i) : 2 lt.eq i lt.eq n}$ or ${(2, 3, dots, n), (1, 2)}$. *$A_n$ Generators:* Elts of $A_n$ ($n gt.eq 3$) product of 3-cycles. Identities (right-to-left): $(i, j)(i, k) = (i, k, j)$ and $(i, j)(k, ell) = (i, j, k)(j, k, ell)$. *$D_6$ Decomposition:* $D_6 tilde.eq D_3 times C_2$. *$A_4$ Subgroups:* No subgroup order 6. *Conjugacy Classes:* \# classes is $1/|G| sum_(g in G) |C_G(g)|$.
+*Order counting:* Elts of order $k$ come in groups of $phi(k)$ (from cyclic subgps). Non-cyclic order 55 has $4r$ elts of order 5, $10s$ of order 11, $4r + 10s = 54$. *Order 2 elements:* Even order group has odd \# of order 2 elts (non-self-inverse pair up). *Subgroup Intersections:* If $|H|^2 > |G|$ and $|J|^2 > |G|$, then $H inter J eq.not {e}$ since $|H inter J| = (|H| |J|) \/ |H J| gt.eq (|H| |J|) \/ |G| > 1$. *$S_n$ Generators:* Transpositions ${(1, i) : 2 lt.eq i lt.eq n}$ or ${(2, 3, dots, n), (1, 2)}$. *$A_n$ Generators:* Elts of $A_n$ ($n gt.eq 3$) product of 3-cycles. Identities (right-to-left): $(i, j)(i, k) = (i, k, j)$ and $(i, j)(k, ell) = (i, j, k)(j, k, ell)$. *$D_6$ Decomposition:* $D_6 tilde.eq D_3 times C_2$. *$A_4$ Subgroups:* No subgroup order 6. *Conjugacy Classes:* \# classes is $1/|G| sum_(g in G) |C_G(g)|$.
 
 *Sylow analysis:* $|G| = p^k m$. List divisors of $m$ $equiv 1 (mod p)$. Use element counting to eliminate trivial intersections. *Simple group test:* Index bounds ($|G| | m!$), Sylow uniqueness, union of classes, parity test ($2m$, $m$ odd). *Burnside applications:* List symmetries, compute number of cycles, apply formula. *Quotient identification:* 1st Isom Thm via homomorphism. *Ring decomposition:* Central idempotents $e_1, dots, e_k$ satisfy $sum e_i = 1$ and orthogonal ($e_i e_j = 0$). $R = e_1 R plus.o dots plus.o e_k R$.
