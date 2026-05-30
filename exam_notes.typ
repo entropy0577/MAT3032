@@ -1,255 +1,301 @@
-// MAT3032 Advanced Algebra — A4 Landscape Exam Notes
-#set page(paper: "a4", flipped: true, margin: (top: 0.3cm, bottom: 0.3cm, left: 0.3cm, right: 0.3cm))
-#set text(font: "FiraGo", size: 6.25pt, weight: "regular")
-#set par(justify: true, leading: 0.25em, spacing: 0.15em)
-#set heading(numbering: none)
-#show heading.where(level: 1): set text(size: 7pt, weight: "bold")
-#show heading.where(level: 2): set text(size: 7pt, weight: "bold")
-#show heading.where(level: 3): set text(size: 7pt, weight: "bold")
-#show heading: set block(above: 0.3em, below: 0.3em)
-#set enum(indent: 0pt, body-indent: 2pt, spacing: 0.3em)
-#set list(indent: 0pt, body-indent: 2pt, spacing: 0.3em)
-#show: columns.with(4, gutter: 4pt)
-#show math.equation: set text(font: "Fira Math")
+// MAT3032 Advanced Algebra — Study Guide
+#set page(paper: "a4", margin: (top: 2cm, bottom: 2cm, left: 1.5cm, right: 1.5cm))
+#set text(font: "New Computer Modern", size: 10pt, weight: "regular")
+#set par(justify: false, leading: 0.5em, spacing: 0.5em)
+#set heading(numbering: "1.1")
+#show heading.where(level: 1): set text(size: 14pt, weight: "bold")
+#show heading.where(level: 2): set text(size: 12pt, weight: "bold")
+#show heading.where(level: 3): set text(size: 11pt, weight: "bold")
+#show heading: set block(above: 1.2em, below: 0.8em)
+#set enum(indent: 0pt, body-indent: 4pt, spacing: 0.5em)
+#set list(indent: 0pt, body-indent: 4pt, spacing: 0.5em)
+#show: columns.with(2, gutter: 1cm)
+#show math.equation: set text(font: "New Computer Modern Math")
 #show math.equation.where(block: false): set text(bottom-edge: "bounds", top-edge: "bounds")
 
 #let thm(title, body) = block(
-  width: 100%, inset: (x: 2pt, y: 1.5pt), radius: 1pt,
-  stroke: 0.3pt + luma(120), fill: luma(245),
+  width: 100%, inset: (x: 6pt, y: 4pt), radius: 2pt,
+  stroke: 0.5pt + luma(120), fill: luma(245),
   [*#title.* #body]
 )
 #let defn(title, body) = block(
-  width: 100%, inset: (x: 2pt, y: 1.5pt), radius: 1pt,
-  stroke: 0.3pt + rgb("#2563eb"), fill: rgb("#eff6ff"),
+  width: 100%, inset: (x: 6pt, y: 4pt), radius: 2pt,
+  stroke: 0.5pt + rgb("#2563eb"), fill: rgb("#eff6ff"),
   [*#title.* #body]
 )
 #let prf(body) = block(
-  width: 100%, inset: (x: 2pt, y: 1pt), radius: 1pt,
-  stroke: 0.3pt + rgb("#9333ea"), fill: rgb("#faf5ff"),
-  [_Pf._ #body]
+  width: 100%, inset: (x: 6pt, y: 4pt), radius: 2pt,
+  stroke: 0.5pt + rgb("#9333ea"), fill: rgb("#faf5ff"),
+  [_Proof._ #body]
 )
 
-= Ch 1: Groups
+= Groups
 
-== §1.1 Fundamentals
+== Fundamentals
 
-#defn[Group][$( G, ast )$: set w/ assoc. binary op, identity $e$, inverses. *Abelian*: commutative.]
-#defn[Subgroup Test][$H lt.eq G$ iff $a b^(-1) in H$ $forall a, b in H$.]
-#thm[Lagrange][$H lt.eq G$, $G$ finite $=>$ $|H|$ divides $|G|$. Index $[G:H] = |G|\/|H|$.]
-#defn[Element Order][$o(a)$ = smallest $k in NN$ s.t. $a^k = e$; $o(a) | |G|$.]
-#defn[Homomorphism][$phi: G_1 -> G_2$ preserving op. *Kernel*: $ker phi = {g : phi(g) = e}$. *Image*: $phi(G_1)$. Injective iff $ker phi = {e}$.]
+#defn[Group][$(G, ast)$ is a set with an associative binary operation, an identity element $e$, and inverses. It is *Abelian* if the operation is commutative.]
+#defn[Subgroup Test][For a non-empty subset $H subset.eq G$, $H lt.eq G$ if and only if $a b^(-1) in H$ for all $a, b in H$.]
+#thm[Lagrange's Theorem][If $H lt.eq G$ and $G$ is finite, then $|H|$ divides $|G|$. The index $[G:H] = |G| \/ |H|$.]
+#defn[Element Order][The order of $a$, denoted $o(a)$, is the smallest $k in NN^+$ such that $a^k = e$. Note: By Lagrange's Theorem, $o(a)$ divides $|G|$.]
+#defn[Homomorphism][A map $phi: G_1 -> G_2$ preserving the group operation. 
+- *Kernel*: $ker phi = {g : phi(g) = e}$. 
+- *Image*: $phi(G_1)$. 
+A homomorphism is injective if and only if $ker phi = {e}$.]
 
-*Group families:*
-- *Cyclic* $C_n = chevron.l g : g^n = e chevron.r tilde.eq (ZZ_n, +_n)$; $phi(n)$ generators; unique subgp of order $d$ for each $d | n$
-- *Units* $U_n$: units of $(ZZ_n, times_n)$, order $phi(n)$
-- *$"GL"(n,R)$, $"SL"(n,R)$*: general/special linear groups
-- *$S_n$*: symmetric group, order $n!$; cycle notation; *$A_n$*: alternating, order $n!\/2$
-- *$D_n$*: dihedral, symmetries of regular $n$-gon, order $2n$
-- *Direct products*: $C_m times C_n tilde.eq C_(m n)$ iff $gcd(m,n) = 1$
+*Group Families:*
+- *Cyclic* $C_n = chevron.l g : g^n = e chevron.r tilde.eq (ZZ_n, +_n)$; there are $phi(n)$ generators; there is a unique subgroup of order $d$ for each $d | n$.
+- *Units* $U_n$: units of $(ZZ_n, times_n)$, order $phi(n)$.
+- *$"GL"(n,R)$, $"SL"(n,R)$*: general and special linear groups.
+- *$S_n$*: symmetric group, order $n!$; *$A_n$*: alternating group, order $n! \/ 2$.
+- *$D_n$*: dihedral group, symmetries of a regular $n$-gon, order $2n$.
+- *Direct products*: $C_m times C_n tilde.eq C_(m n)$ if and only if $gcd(m,n) = 1$.
 
-== §1.2 Generators & Presentations
+== Generators & Presentations
 
-#defn[Generating Set][$chevron.l S chevron.r$ = smallest subgroup containing $S$.]
-#defn[Presentation][$chevron.l S : R chevron.r$: generators and defining relations.]
-Examples: $C_n = chevron.l g : g^n = e chevron.r$; Klein $V = chevron.l a,b : a^2 = b^2 = e, a b a = b chevron.r$; $D_n = chevron.l sigma, tau : sigma^n = tau^2 = iota, sigma tau sigma = tau chevron.r$.
+#defn[Generating Set][$chevron.l S chevron.r$ is the smallest subgroup containing $S$.]
+#defn[Presentation][$chevron.l S | R chevron.r$ denotes a group with generators $S$ and defining relations $R$.]
 
-*Groups of order 8:* 5 total: $C_8$, $C_4 times C_2$, $C_2^3$ (abelian); $D_4$, $Q_4$ (non-abelian).
-_Derivation:_ Non-abelian of order 8: all non-id elements have order 2 or 4; at least one has order 4 (else abelian). Pick $a$ of order 4, $b in.not chevron.l a chevron.r$. Then $G = {e, a, a^2, a^3, b, a b, a^2 b, a^3 b}$. Since $b^2 in chevron.l a chevron.r$: $b^2 = e => D_4$; $b^2 = a^2 => Q_4$.
+*Examples:* 
+- $C_n = chevron.l g | g^n = e chevron.r$
+- Klein Four-Group $V = chevron.l a,b | a^2 = b^2 = e, a b a = b chevron.r$
+- $D_n = chevron.l sigma, tau | sigma^n = tau^2 = iota, sigma tau sigma = tau chevron.r$
 
-#defn[Dicyclic][$Q_n$: order $2n$, $chevron.l a,b : a^n = e, b^2 = a^(n\/2), a b a = b chevron.r$.]
+*Groups of order 8:* There are 5 total: $C_8$, $C_4 times C_2$, $C_2^3$ (abelian); $D_4$, $Q_4$ (non-abelian).
+_Derivation:_ For a non-abelian group of order 8, all non-identity elements have order 2 or 4. At least one element must have order 4 (otherwise the group is abelian). Pick $a$ of order 4, and $b in.not chevron.l a chevron.r$. Then $G = {e, a, a^2, a^3, b, a b, a^2 b, a^3 b}$. Since $b^2 in chevron.l a chevron.r$ and commutes with $b$, $b^2$ must be $e$ or $a^2$. We must also establish the conjugation relation $b a b^(-1) = a^(-1)$ (or $b a = a^3 b$) to ensure the group is non-abelian. If $b^2 = e$, the presentation matches $D_4$. If $b^2 = a^2$, it matches $Q_4$.
 
-== §1.3 Cosets, Products, Quotients
+#defn[Dicyclic Group][$Q_n$: order $2n$, presentation $chevron.l a,b | a^n = e, b^2 = a^(n\/2), a b a = b chevron.r$.]
 
-#defn[Cosets][Left $a H = {a h : h in H}$, right $H a$. Cosets partition $G$.]
-#defn[Normal][$H lt.tri.eq G$: $a H = H a$ $forall a$. Equiv: $a H a^(-1) = H$ $forall a$. Index 2 $=>$ normal. Kernels are normal.]
-#thm[Prop 1.1][Check normality via generators: $H lt.tri.eq G$ iff $g h g^(-1) in H$ for all $g$ in gen. set for $G$, $h$ in gen. set for $H$.]
-#thm[Prop 1.2][$(b a b^(-1))^n = b a^n b^(-1)$; if $b a b^(-1) = a^r$ then $b^n a b^(-n) = a^(r^n)$.]
-#thm[Prop 1.3][(i) $H J$ is subgroup iff $J H = H J$. (ii) $H lt.tri.eq G$ or $J lt.tri.eq G => H J lt.eq G$. (iii) Both normal $=> H J lt.tri.eq G$.]
-#prf[(i): If $H J lt.eq G$, $h^(-1)j^(-1) in H J$ so $(h^(-1)j^(-1))^(-1) = j h in H J$, thus $J H subset.eq H J$; similarly reverse. Converse: subgroup test with $J H = H J$.]
-#thm[Prop 1.4][$|H J| = (|H| dot |J|) / |H inter J|$.]
-#thm[Prop 1.5 (Internal Direct Product)][If $G = H J$, $H inter J = {e}$: (i) unique $h j$ expression; (ii) $H, J lt.tri.eq G$ iff $h j = j h$ $forall h,j$; then $G tilde.eq H times J$.]
-#prf[Uniqueness: $h j = h' j' => h'^(-1) h = j' j^(-1) in H inter J = {e}$. Commutativity$<=>$normality: if both normal, $h j h^(-1) j^(-1) in H inter J = {e}$.]
+== Cosets, Products, Quotients
 
-#defn[Quotient Group][$G\/H$ when $H lt.tri.eq G$: cosets $a H$ form group, $(a H)(b H) = a b H$.]
-#thm[1st Isomorphism Thm][$phi: G_1 -> G_2$ homom. $=>$ $ker phi lt.tri.eq G_1$ and $G_1 \/ ker phi tilde.eq phi(G_1)$.]
-#thm[Prop 1.7 (Correspondence Thm)][Subgroups of $G\/N$ are $H\/N$ for $H lt.eq G$ with $N lt.eq H$. $H\/N lt.tri.eq G\/N$ iff $N lt.tri.eq H lt.tri.eq G$, and $(G\/N)\/(H\/N) tilde.eq G\/H$ (*3rd Isom. Thm*).]
-#thm[2nd Isomorphism Thm][$H\/(H inter N) tilde.eq H N\/N$.]
-#thm[Prop 1.8][If $G\/N$ cyclic, then $G$ has a subgroup $tilde.eq G\/N$.]
-#prf[If $g N$ generates $G\/N$ with order $m$, $g$ has order $r = k m$. Then $chevron.l g^k chevron.r tilde.eq G\/N$.]
+#defn[Cosets][A left coset is $a H = {a h : h in H}$, a right coset is $H a$. Cosets partition $G$.]
+#defn[Normal Subgroup][$H lt.tri.eq G$ if $a H = H a$ for all $a in G$. Equivalent definition: $a H a^(-1) = H$ for all $a in G$. Any subgroup of index 2 is normal. Kernels of homomorphisms are always normal.]
+#thm[Normality via Generators][For a finite group $G$ (or if checking both generators and their inverses), $H lt.tri.eq G$ if and only if $g h g^(-1) in H$ for all $g$ in a generating set for $G$, and all $h$ in a generating set for $H$.]
+#thm[Conjugation Power Rule][$(b a b^(-1))^n = b a^n b^(-1)$; if $b a b^(-1) = a^r$ then $b^n a b^(-n) = a^(r^n)$.]
+#thm[Subgroup Product Theorem][
+- $H J$ is a subgroup if and only if $J H = H J$. 
+- If $H lt.tri.eq G$ or $J lt.tri.eq G$, then $H J lt.eq G$. 
+- If both $H lt.tri.eq G$ and $J lt.tri.eq G$, then $H J lt.tri.eq G$.]
+#prf[For the first point: If $H J lt.eq G$, then for any $h in H, j in J$, we have $h^(-1)j^(-1) in H J$, so their inverse $(h^(-1)j^(-1))^(-1) = j h in H J$, meaning $J H subset.eq H J$. A similar argument shows $H J subset.eq J H$. The converse follows from the subgroup test since $J H = H J$.]
+#thm[Product Order][$|H J| = (|H| dot |J|) / |H inter J|$.]
+#thm[Internal Direct Product][If $G = H J$ and $H inter J = {e}$: 
+- Every element has a unique expression $h j$. 
+- $H, J lt.tri.eq G$ if and only if $h j = j h$ for all $h in H, j in J$. In this case, $G tilde.eq H times J$.]
+#prf[Uniqueness: If $h j = h' j'$, then $(h')^(-1) h = j' j^(-1)$. This element is in $H inter J = {e}$. 
+Commutativity $<=>$ normality: If both are normal, the commutator $h j h^(-1) j^(-1) = (h j h^(-1)) j^(-1) = h (j h^(-1) j^(-1)) in H inter J = {e}$, meaning $h j = j h$. Conversely, if they commute, conjugation is trivial and normality follows immediately.]
 
-== §1.4 Finite Abelian Groups
+#defn[Quotient Group][$G\/H$ exists when $H lt.tri.eq G$. The cosets $a H$ form a group under the operation $(a H)(b H) = a b H$.]
+#thm[1st Isomorphism Theorem][If $phi: G_1 -> G_2$ is a homomorphism, then $ker phi lt.tri.eq G_1$ and $G_1 \/ ker phi tilde.eq phi(G_1)$.]
+#thm[Correspondence Theorem][The subgroups of $G\/N$ are exactly those of the form $H\/N$ for $H lt.eq G$ containing $N$. Furthermore, assuming $N lt.tri.eq G$, $H\/N lt.tri.eq G\/N <=> H lt.tri.eq G$, and $(G\/N)\/(H\/N) tilde.eq G\/H$ (which is the *3rd Isomorphism Theorem*).]
+#thm[2nd Isomorphism Theorem][If $H lt.eq G$ and $N lt.tri.eq G$, then $H\/(H inter N) tilde.eq H N\/N$.]
+#thm[Quotient Subgroups][If $G$ is a finite group and $G\/N$ is cyclic, then $G$ has a subgroup isomorphic to $G\/N$.]
+#prf[If $g N$ generates $G\/N$ with order $m$, then $g$ has order $r = k m$. The subgroup $chevron.l g^k chevron.r$ is isomorphic to $G\/N$.]
 
-#thm[Fundamental Theorem][Every finite abelian group $tilde.eq$ direct product of cyclics:
-(1) *Primary:* $C_(p_1^(n_1)) times dots times C_(p_r^(n_r))$;
-(2) *Invariant factor:* $C_(q_1) times dots times C_(q_s)$ with $q_i | q_(i+1)$.]
-#prf[Induction on min. generating set size. Key: if $chevron.l g_1 chevron.r inter H eq.not {e}$, construct element of smaller order in a $k$-element gen. set, contradicting minimality.]
+== Finite Abelian Groups
 
-Examples: Order 54: $C_54$, $C_3 times C_18$, $C_3^2 times C_6$. Number of abelian groups of order $p^k$ = partitions of $k$.
-*Elem. order:* $o((g_1, ..., g_s))$ is $lcm(o(g_1), ..., o(g_s))$. *Prop 1.9:* Ab. gp w/ gen. set gcd=1 has $k$-elt gen. set with product of powers.
+#thm[Fundamental Theorem of Finite Abelian Groups][Every finite abelian group is isomorphic to a direct product of cyclic groups:
+- *Primary Decomposition:* $C_(p_1^(n_1)) times dots times C_(p_r^(n_r))$
+- *Invariant Factor Decomposition:* $C_(q_1) times dots times C_(q_s)$ with $q_i | q_(i+1)$.]
+#prf[The proof proceeds by induction on the minimal size of a generating set. A key step involves showing that if $chevron.l g_1 chevron.r inter H eq.not {e}$, one can construct an element to replace a generator such that the orders of the new generating elements contradict the maximality/minimality assumptions, completing the induction.]
 
-== §1.5 Automorphisms & Semi-Direct Products
+*Examples:* For order 54, the abelian groups are $C_54$, $C_3 times C_18$, $C_3^2 times C_6$. The number of abelian groups of order $p^k$ is equal to the number of partitions of $k$.
+*Element order:* The order of $(g_1, dots, g_s)$ is $"lcm"(o(g_1), dots, o(g_s))$. 
+*Generating Sets:* An abelian group generated by elements with coprime orders has a generating set formed by products of prime powers.
 
-#thm[Prop 1.11][$"Aut"(C_n) tilde.eq U_n$, $|"Aut"(C_n)| = phi(n)$. Automorphisms: $psi_m : g |-> g^m$ for $gcd(m,n) = 1$.]
-#defn[Inner Auts][$gamma_a : x |-> a x a^(-1)$; $"Inn"(G) lt.tri.eq "Aut"(G)$; $G\/Z(G) tilde.eq "Inn"(G)$.]
-#defn[Semi-Direct Product][$H times.r J$: $G = H J$, $H inter J = {e}$, $H lt.tri.eq G$ (but $J$ need not be normal). $J$ acts on $H$ by conjugation.]
+== Automorphisms & Semi-Direct Products
 
-*Groups of order 12:* $H tilde.eq C_3$, $J tilde.eq C_4$, $H lt.tri.eq G$: conjugation by $j$ maps $h -> h$ (gives $C_12$) or $h -> h^2$ (non-abelian).
-*Char. subgroups:* Transitive. If $N lt.tri.eq G$, $G\/N$ cyclic, $|N|, |G\/N|$ coprime $=> G = N times.r Q$.
-*Homom/Aut:* $phi(a)=a^2$ homom iff abelian. $"Aut"(ZZ) tilde.eq C_2$.
+#thm[Automorphism Group of $C_n$][$"Aut"(C_n) tilde.eq U_n$, so $|"Aut"(C_n)| = phi(n)$. The automorphisms are given by $psi_m : g |-> g^m$ for $gcd(m,n) = 1$.]
+#defn[Inner Automorphisms][Defined by conjugation $gamma_a : x |-> a x a^(-1)$. $"Inn"(G) lt.tri.eq "Aut"(G)$, and $G\/Z(G) tilde.eq "Inn"(G)$.]
+#defn[Semi-Direct Product][$H times.r J$ occurs when $G = H J$, $H inter J = {e}$, and $H lt.tri.eq G$ (but $J$ need not be normal). $J$ acts on $H$ by conjugation.]
 
-= Ch 2: Actions, Conjugacy, Sylow
+*Groups of order 12:* Let $H tilde.eq C_3$ and $J tilde.eq C_4$ with $H lt.tri.eq G$. Conjugation by $j in J$ maps $h |-> h$ (yielding the abelian $C_12$) or $h |-> h^2$ (yielding a non-abelian group).
+*Characteristic subgroups:* The property is transitive ($K "char" H "char" G => K "char" G$). If $N lt.tri.eq G$, $G\/N$ is cyclic, and $|N|, |G\/N|$ are coprime, then $G = N times.r Q$ (where $Q lt.eq G$ and $Q tilde.eq G\/N$).
+*Homomorphism vs Automorphism:* $phi(a)=a^2$ is a homomorphism if and only if $G$ is abelian. $"Aut"(ZZ) tilde.eq C_2$.
 
-== §2.1 Group Actions
+= Actions, Conjugacy, Sylow
 
-#defn[Left Action][$(g,x) |-> g(x) in X$ with $e(x) = x$ and $g_1(g_2(x)) = (g_1 g_2)(x)$.]
-#defn[Orbit/Stabiliser][$O(x) = {g(x) : g in G}$; $G_x = {g : g(x) = x} lt.eq G$; $"Fix"(g) = {x : g(x) = x}$.]
-#thm[Orbit-Stabiliser (Prop 2.2)][Bijection $g(x) <-> g G_x$. For finite $G$: $|O(x)| dot |G_x| = |G|$.]
-#prf[$h(x) = g(x) <==> g^(-1)h in G_x <==> h in g G_x$.]
-#thm[Orbit Decomposition (Prop 2.3)][$|X| = |"Fix"(G)| + sum_(i=1)^n [G:G_(x_i)]$ (sum over non-trivial orbit reps).]
-#thm[Prop 2.4][Action on set of size $m$ $=>$ homomorphism $G -> S_m$ with kernel $tilde(G)_X$.]
-#thm[Prop 2.5][Subgroup of index $m$ $=>$ homom. $G -> S_m$ with kernel $subset.eq$ the subgroup.]
-#thm[Cayley (Prop 2.6)][Every group of order $n$ embeds in $S_n$.]
-*Transitive:* $O(x) = X$. (e.g. $(RR, +)$ acting on $CC$ via $x(z) = e^(i x)z$).
-#thm[Prop 2.7][If $p$ is smallest prime dividing $|G|$, any subgroup of index $p$ is normal.]
-#prf[Homom. $G -> S_p$, image divides $p!$ and $|G|$. Since primes of $|G|$ are $gt.eq p$, $|G\/K| = p$, forcing $K = H$.]
-#thm[Prop 2.8][Every group of order $p^2$ is abelian ($tilde.eq C_(p^2)$ or $C_p times C_p$).]
+== Group Actions
 
-== §2.2 Conjugacy
+#defn[Left Action][A map $(g,x) |-> g(x) in X$ with $e(x) = x$ and $g_1(g_2(x)) = (g_1 g_2)(x)$.]
+#defn[Orbit and Stabiliser][
+- *Orbit*: $O(x) = {g(x) : g in G}$.
+- *Stabiliser*: $G_x = {g : g(x) = x} lt.eq G$.
+- *Fixed points*: $"Fix"(g) = {x : g(x) = x}$.]
+#thm[Orbit-Stabiliser Theorem][There is a bijection $g(x) <-> g G_x$. For a finite group $G$: $|O(x)| dot |G_x| = |G|$.]
+#prf[$h(x) = g(x) <=> g^(-1)h in G_x <=> h in g G_x$.]
+#thm[Orbit Decomposition][$|X| = |"Fix"(G)| + sum_(i=1)^n [G:G_(x_i)]$ (where the sum is over non-trivial orbit representatives).]
+#thm[Action Homomorphisms][
+- An action on a set of size $m$ gives a homomorphism $G -> S_m$ with kernel $tilde(G)_X$.
+- A subgroup of index $m$ gives a homomorphism $G -> S_m$ acting on the left cosets, with the kernel contained within the subgroup.]
+#thm[Cayley's Theorem][Every group of order $n$ embeds in $S_n$.]
+*Transitive Action:* An action is transitive if $O(x) = X$ for all $x$. (e.g., $(RR, +)$ acting on the unit circle $S^1$ via $x(z) = e^(i x)z$).
+#thm[Smallest Prime Index][If $p$ is the smallest prime factor of $|G|$, any subgroup of index $p$ is normal.]
+#prf[The action on the $p$ cosets gives a homomorphism $G -> S_p$. The size of the image divides $p!$ and $|G|$. Since the prime factors of $|G|$ are $gt.eq p$, $|G\/"ker"| = p$, forcing the kernel to equal the subgroup.]
+#thm[Groups of Order $p^2$][Every group of order $p^2$ is abelian ($tilde.eq C_(p^2)$ or $C_p times C_p$).]
 
-#defn[Conjugacy Class][$x^G = {g x g^(-1) : g in G}$ (orbit under conjugation).]
-#defn[Centraliser/Centre][$C_G(x) = {g : g x = x g}$; $Z(G) = {g : g x = x g space forall x} lt.tri.eq G$.]
-#thm[Class Equation][$|G| = |Z(G)| + sum_(x in T) |G|\/|C_G(x)|$.]
-#thm[Cauchy (Prop 2.10)][If $p | |G|$, $exists$ element of order $p$.]
-#prf[Abelian: decompose, find factor with $p | "order"$. Non-abelian: if $p | [G:C_G(x)]$ for all $x in T$, then $p | |Z(G)|$ (abelian case). Else $p | |C_G(x)|$ for some $x$ with $|C_G(x)| < |G|$; induction.]
-#thm[Prop 2.11][If $G$ non-abelian, $G\/Z(G)$ is not cyclic.]
-#thm[Prop 2.9][$Z(G)$ is union of 1-elt conj classes. $|Z(G)| lt.eq |G|\/4$ for non-abelian.]
+== Conjugacy
+
+#defn[Conjugacy Class][$x^G = {g x g^(-1) : g in G}$ (the orbit under conjugation).]
+#defn[Centraliser and Centre][
+- *Centraliser*: $C_G(x) = {g : g x = x g}$.
+- *Centre*: $Z(G) = {g : g x = x g "for all" x} lt.tri.eq G$.]
+#thm[Class Equation][$|G| = |Z(G)| + sum_(x in T) [G : C_G(x)]$ (where $T$ is a set of representatives for the non-central conjugacy classes).]
+#thm[Cauchy's Theorem][If $p | |G|$, there exists an element of order $p$.]
+#prf[For abelian groups: decompose into cyclic factors and find one with $p$ dividing its order. For non-abelian groups: if $p | [G:C_G(x)]$ for all $x in T$, then $p | |Z(G)|$ (reducing to the abelian case). Otherwise, $p | |C_G(x)|$ for some $x$ with $|C_G(x)| < |G|$, and the result follows by induction.]
+#thm[Centre of Non-Abelian Groups][
+- If $G$ is non-abelian, $G\/Z(G)$ is not cyclic.
+- $Z(G)$ is the union of all 1-element conjugacy classes. 
+- $|Z(G)| lt.eq |G|\/4$ for non-abelian groups.]
 *Conjugates:* $G$ is never a union of conjugates of a proper subgroup.
-#thm[Prop 2.12][$H lt.tri.eq G$ iff $H$ is a union of conjugacy classes.]
-#defn[Normaliser][$N_G(H) = {g : g H = H g}$; $H lt.tri.eq N_G(H)$; \#conjugates of $H$ = $[G : N_G(H)]$.]
+#thm[Normal Union][$H lt.tri.eq G$ if and only if $H$ is a union of conjugacy classes.]
+#defn[Normaliser][$N_G(H) = {g : g H = H g}$. We have $H lt.tri.eq N_G(H)$, and the number of conjugates of $H$ is $[G : N_G(H)]$.]
 
-== §2.3 Conjugacy in $S_n$
+== Conjugacy in $S_n$
 
-#defn[Cycle Type][$1^(m_1) 2^(m_2) dots n^(m_n)$ where $m_i$ = \#$i$-cycles. *Cycle index*: $"cyc"(sigma) = sum m_i$.]
-#thm[Prop 2.14][$pi rho pi^(-1) = (pi(i_1) space pi(i_2) dots pi(i_k))$ for $rho = (i_1 space i_2 dots i_k)$.]
-#thm[Prop 2.15][Conjugate in $S_n$ $<==>$ same cycle type.]
-#thm[Prop 2.16][Conj. class size: $n! \/ (1^(m_1) 2^(m_2) dots n^(m_n) m_1! dots m_n!)$. Centraliser order: $1^(m_1) 2^(m_2) dots n^(m_n) m_1! dots m_n!$.]
-#thm[Prop 2.13][$H lt.eq S_n => H subset.eq A_n$ or $|H inter A_n| = |H|\/2$.]
-*Conjugacy in $A_n$*: $S_n$-class stays single in $A_n$ or splits into two equal halves. *$A_5$ is simple:* class sizes 1, 12, 12, 15, 20; no non-trivial union divides 60.
-*$k$-cycle is even iff $k$ odd.* $sigma$ even iff $n - "cyc"(sigma)$ even. \#$k$-cycles in $S_n$: $binom(n,k)(k-1)!$
-$(1 space 2 space 3)$ and $(1 space 3 space 2)$ NOT conjugate in $A_4$ (conjugating $pi$ must be odd).
-$S_4$ normal subgroups: ${e}$, $V = {e, (12)(34), (13)(24), (14)(23)}$, $A_4$, $S_4$.
+#defn[Cycle Type][$1^(m_1) 2^(m_2) dots n^(m_n)$ where $m_i$ is the number of $i$-cycles. The *cycle index* is $"cyc"(sigma) = sum m_i$.]
+#thm[Conjugation of Cycles][$pi rho pi^(-1) = (pi(i_1) space pi(i_2) dots pi(i_k))$ for $rho = (i_1 space i_2 dots i_k)$. Thus, two permutations are conjugate in $S_n <=>$ they have the same cycle type.]
+#thm[Class Sizes in $S_n$][The conjugacy class size is $n! \/ (1^(m_1) 2^(m_2) dots n^(m_n) m_1! dots m_n!)$. The centraliser order is the denominator.]
+#thm[Subgroups of $S_n$][If $H lt.eq S_n$, then either $H subset.eq A_n$ or $|H inter A_n| = |H|\/2$.]
+*Conjugacy in $A_n$:* An $S_n$-conjugacy class remains a single class in $A_n$, unless its centraliser lies entirely in $A_n$, in which case it splits into two equal halves.
+*$A_5$ is simple:* The class sizes in $A_5$ are 1, 12, 12, 15, and 20. No combination of these (including 1) divides 60, so there are no non-trivial proper normal subgroups.
+*Parity:* A $k$-cycle is even if and only if $k$ is odd. A permutation $sigma$ is even if and only if $n - "cyc"(sigma)$ is even. 
+*Cycle Counting:* The number of $k$-cycles in $S_n$ is $binom(n,k)(k-1)!$.
+*Conjugacy in $A_4$:* $(1 space 2 space 3)$ and $(1 space 3 space 2)$ are NOT conjugate in $A_4$ because any conjugating permutation $pi in S_4$ must be an odd permutation.
+*Normal Subgroups of $S_4$:* ${e}$, $V = {e, (12)(34), (13)(24), (14)(23)}$, $A_4$, and $S_4$.
 
-== §2.4 Burnside's Formula
+== Burnside's Formula
 
-#thm[Burnside (Prop 2.17)][\#orbits $= 1/(|G|) sum_(g in G) |"Fix"(g)|$.]
-#prf[Count pairs $(g,x)$ with $g(x) = x$ two ways: $sum |"Fix"(g)| = sum |G_x|$. By orbit-stabiliser, each orbit contributes 1.]
-#thm[Colouring Formula (Prop 2.18)][$q$ colours, symmetry $G subset.eq S_n$: \#colourings $= 1/(|G|) sum_(sigma in G) q^("cyc"(sigma))$.]
-*Hexagon, 3 colours:* Rotations ($C_6$): $1/6(3^6 + 2 dot 3 + 2 dot 9 + 27) = 130$. Full ($D_6$): $1/12(3^6 + 2 dot 3 + 2 dot 9 + 27 + 3 dot 81 + 3 dot 27) = 92$.
-*Pentagon:* $C_5$: $1/5(q^5 + 4q)$; $D_5$: $1/10(q^5 + 4q + 5q^3)$.
-*Tetrahedron faces, 4 colours ($A_4$):* $1/12(4^4 + 8 dot 4 + 3 dot 4^2) = 36$.
-*Octahedron (24 syms):* 24 symmetries; $q$-colourings = $1/24(q^8 + 17q^4 + 6q^2)$.
+#thm[Burnside's Lemma][The number of orbits is $1/(|G|) sum_(g in G) |"Fix"(g)|$.]
+#prf[Count pairs $(g,x)$ with $g(x) = x$ in two ways: $sum |"Fix"(g)| = sum |G_x|$. By the orbit-stabiliser theorem, $sum_(x in O) |G_x| = |G|$ for each orbit, so each orbit contributes exactly $|G|$ to the total sum.]
+#thm[Colouring Formula][For $q$ colours and symmetry group $G subset.eq S_n$, the number of distinct colourings is $1/(|G|) sum_(sigma in G) q^("cyc"(sigma))$.]
 
-== §2.5 $p$-Groups & Sylow Theorems
+*Examples:*
+- *Hexagon, 3 colours:* 
+  - Rotations ($C_6$): $1/6(3^6 + 2 dot 3 + 2 dot 9 + 27) = 130$. 
+  - Full symmetries ($D_6$): $1/12(3^6 + 2 dot 3 + 2 dot 9 + 27 + 3 dot 81 + 3 dot 27) = 92$.
+- *Pentagon:* $C_5$: $1/5(q^5 + 4q)$; $D_5$: $1/10(q^5 + 4q + 5q^3)$.
+- *Tetrahedron faces, 4 colours ($A_4$):* $1/12(4^4 + 8 dot 4^2 + 3 dot 4^2) = 36$.
+- *Octahedron (24 symmetries):* $q$-colourings = $1/24(q^8 + 17q^4 + 6q^2)$.
 
-#thm[Prop 2.19][$p$-group on finite $X$: $|"Fix"(G)| equiv |X| (mod p)$. So $Z(G) eq.not {e}$.]
-#thm[Prop 2.20][$p$-subgroup $H$: $[N_G(H):H] equiv [G:H] (mod p)$.]
-#thm[Sylow Theorems (Prop 2.21)][$|G| = p^k m$, $p divides.not m$:
-(i) $exists$ $p$-Sylow (order $p^k$); (ii) every $p$-subgroup $subset.eq$ some $p$-Sylow; (iii) all $p$-Sylows conjugate; (iv) $w_p equiv 1 (mod p)$ and $w_p | m$; (v) $[G:N_G(P)] = w_p$.]
-#prf[(i)+(ii): Start with $|H| = p$ (Cauchy). Prop 2.20 gives $p | [N_G(H):H]$ for proper $p$-subgp, so $exists$ larger one by Correspondence Thm.
-(iii): $P'$ acts on $G\/P$; $|"Fix"(P')| equiv m (mod p) eq.not 0$, so $exists b P$ fixed by $P'$, giving $P' subset.eq b P b^(-1)$; equal order $=> P' = b P b^(-1)$.
-(iv): $w_p = [G:N_G(P)]$; $q = [N_G(P):P]$; $q w_p = m$ so $w_p | m$. By 2.20, $m = q + k p$ so $w_p = 1 + k p\/q$; $p divides.not q$ gives $w_p equiv 1 (mod p)$.]
+== $p$-Groups & Sylow Theorems
 
-#thm[Prop 2.22][(i) Unique $p$-Sylow $<==>$ normal. (ii) Abelian $=>$ unique $p$-Sylows. (iii) All unique $=>$ $G tilde.eq$ direct product of Sylows.]
-#thm[Prop 2.23 (Order $p q$)][Primes $p > q$: abelian $=>$ cyclic $C_(p q)$. Non-abelian exists iff $q | (p-1)$; then unique up to isom., $w_p = 1$, $w_q = p$.]
-#thm[Prop 2.24][If $H lt.tri.eq G$ cyclic and $phi(|H|)$ coprime to $|J|$, then $h j = j h$ $forall h,j$. If $phi(|H|)$ coprime to $|G|$ then $H subset.eq Z(G)$.]
-#prf[$theta: J -> "Aut"(H)$ by $j |-> gamma_j$. $|"Aut"(H)| = phi(|H|)$ coprime to $|J|$ $=> |theta(J)| = 1$.]
+#thm[$p$-Groups on Finite Sets][For a $p$-group acting on a finite set $X$, $|"Fix"(G)| equiv |X| (mod p)$. In particular, by letting $G$ act on itself by conjugation, $Z(G) eq.not {e}$.]
+#thm[Normaliser of $p$-Subgroups][For a $p$-subgroup $H$, $[N_G(H):H] equiv [G:H] (mod p)$.]
+#thm[Sylow Theorems][Let $|G| = p^k m$ with $p divides.not m$:
+(i) There exists a $p$-Sylow subgroup (of order $p^k$).
+(ii) Every $p$-subgroup is contained in some $p$-Sylow subgroup.
+(iii) All $p$-Sylow subgroups are conjugate.
+(iv) The number of $p$-Sylows, $w_p$, satisfies $w_p equiv 1 (mod p)$ and $w_p | m$.
+(v) $[G:N_G(P)] = w_p$.]
+#prf[
+(i)+(ii): Start with a subgroup of order $p$ (via Cauchy). The normaliser theorem shows $p | [N_G(H):H]$ for any proper $p$-subgroup, guaranteeing a larger $p$-subgroup exists by the Correspondence Theorem until we reach order $p^k$.
+(iii): Let $P'$ act on the cosets $G\/P$. Since $|"Fix"(P')| equiv m (mod p) eq.not 0$, there is a coset $b P$ fixed by $P'$, implying $P' subset.eq b P b^(-1)$. Equal orders forces $P' = b P b^(-1)$.
+(iv): $w_p = [G:N_G(P)]$. Let $q = [N_G(P):P]$. Then $q w_p = m$ so $w_p | m$. By the normaliser theorem, $m = q + k p$ so $w_p = 1 + k p\/q$. Since $p divides.not q$, this gives $w_p equiv 1 (mod p)$.]
 
-*Key Sylow examples:*
-Order 133 ($= 7 times 19$): $w_19 = 1$, $w_7 = 1$, both normal, $G tilde.eq C_133$.
-Order 45 ($= 3^2 times 5$): $w_5 = 1$, $w_3 = 1$; groups: $C_45$, $C_3 times C_15$.
-Order 455 ($= 5 times 7 times 13$): $w_13 = 1$, $w_7 = 1$, $w_5 = 1$; $G tilde.eq C_455$.
+#thm[Sylow Uniqueness][
+- A $p$-Sylow subgroup is unique if and only if it is normal.
+- Abelian groups have unique $p$-Sylows for all $p$.
+- If all Sylows are unique, $G$ is isomorphic to their direct product.]
+#thm[Groups of Order $p q$][Let $p > q$ be primes. An abelian group of this order is cyclic $C_(p q)$. A non-abelian group exists if and only if $q | (p-1)$; it is unique up to isomorphism, with $w_p = 1$ and $w_q = p$.]
+#thm[Coprime Automorphisms][If $H lt.tri.eq G$ is cyclic and $phi(|H|)$ is coprime to $|J|$, then $h j = j h$ for all $h in H, j in J$. If $phi(|H|)$ is coprime to $|G|$ then $H subset.eq Z(G)$.]
+#prf[The conjugation action defines a homomorphism $theta: J -> "Aut"(H)$. Since $|"Aut"(H)| = phi(|H|)$ is coprime to $|J|$, the image must be trivial, $|theta(J)| = 1$.]
 
-== §2.6 Simple Groups
+*Key Sylow Examples:*
+- *Order 133 ($7 times 19$):* $w_19 = 1$, $w_7 = 1$. Both are normal, so $G tilde.eq C_133$.
+- *Order 45 ($3^2 times 5$):* $w_5 = 1$, $w_3 = 1$. The groups are $C_45$ and $C_3 times C_15$.
+- *Order 455 ($5 times 7 times 13$):* $w_13 = 1$ and $w_7 = 1$, meaning there is a normal subgroup $C_91 tilde.eq P_7 P_13$. The whole group is $C_91 times.r C_5$. The automorphism group $"Aut"(C_91)$ has order $phi(91) = 72$, which is coprime to 5. This forces the semidirect product to be direct, making the group abelian, which forces $w_5 = 1$. Thus, $G tilde.eq C_455$.
 
-#defn[Simple][No non-trivial proper normal subgroups.]
-#thm[Prop 2.25][Finite abelian group is simple iff order is prime.]
-#thm[Prop 2.26][If $H lt.eq S_n$ simple, $|H| > 2$, then $H subset.eq A_n$.]
-#thm[Prop 2.27][Order $2m$ ($m$ odd, $m > 1$): not simple.]
-#prf[Embed in $S_(2m)$; element of order 2 is product of $m$ (odd) transpositions, hence odd. Not in $A_(2m)$, so not simple by 2.26.]
-#thm[Prop 2.28][$A_n$ is simple for $n gt.eq 5$.]
-#prf[Base $A_5$: class sizes 1,12,12,15,20; no non-trivial union divides 60. Induction using $A_(n-1)$.]
-#thm[Prop 2.29][If $G$ simple with subgroup of index $m$, then $|G| | m!$.]
-*$A_5$ is the only simple group of order 60* (up to isom.).
+== Simple Groups
 
-*Non-simplicity tests:*
-$|G| = p^k m$ with $1 lt.eq m < p$, not both $k = m = 1$: $p$-Sylow has index $< p$, contradicts $|G| | m!$.
-Order $36$: $w_3 in {1,4}$; if $4$ then $36 | 4! = 24$, contradiction.
-Order $p^2 q^2$ ($p > q$ odd): $w_p = 1$ (forced).
-Order $2m$ ($m$ odd $> 1$): never simple.
-*Exactly 2-elt conj class:* implies not simple. Max subgroup order bounds apply (e.g. 1092 has max 84).
+#defn[Simple Group][A group with no non-trivial proper normal subgroups.]
+#thm[Abelian Simple Groups][A finite abelian group is simple if and only if its order is prime.]
+#thm[Subgroups of $S_n$][If $H lt.eq S_n$ is simple and $|H| > 2$, then $H subset.eq A_n$.]
+#thm[Order $2m$ Non-simplicity][A group of order $2m$ (where $m > 1$ is odd) is never simple.]
+#prf[Embed $G$ in $S_(2m)$ via Cayley's Theorem. An element of order 2 acts without fixed points, so it is a product of $m$ disjoint transpositions. Since $m$ is odd, this permutation is odd. Thus, $G subset.not A_(2m)$, meaning $|G inter A_(2m)| = |G|\/2$, providing a normal subgroup of index 2.]
+#thm[Alternating Groups][$A_n$ is simple for $n gt.eq 5$.]
+#prf[Base case $A_5$: The class sizes are 1, 12, 12, 15, and 20. No non-trivial union of these divides 60. The proof proceeds by induction using $A_(n-1)$.]
+#thm[Index Bound][If $G$ is a simple group with a proper subgroup of index $m > 1$, then $|G| | m!$.]
+*$A_5$ is the only simple group of order 60* (up to isomorphism).
 
-= Ch 3: Rings, Fields, Algebras
+*Non-simplicity Tests:*
+- *Sylow Index Bound:* For $|G| = p^k m$ with $1 lt.eq m < p$ (and not both $k = m = 1$), the $p$-Sylow has index $m < p$. This gives a homomorphism into $S_m$, but $|G|$ cannot divide $m!$, leading to a non-trivial kernel.
+- *Order 36:* $w_3 in {1,4}$. If $w_3 = 4$, the action on the Sylows gives a subgroup of index 4. By the index bound theorem, $36 | 4! = 24$, which is a contradiction.
+- *Order $p^2 q^2$ ($p > q$ odd):* $w_p in {1, q, q^2}$. $w_p eq.not q$ since $p>q$. If $w_p = q^2$, then $p | q^2 - 1 = (q-1)(q+1)$, forcing $p = q+1$, which is impossible for odd primes. Thus $w_p = 1$.
+- *Order $2m$ ($m > 1$ odd):* Never simple.
+- *Exactly 2-element conjugacy class:* Implies not simple (the centraliser has index 2, which is automatically normal).
 
-== §3.1 Rings & Fields
+= Rings, Fields, Algebras
 
-#defn[Ring][$(R, +, times)$: abelian group under $+$, semigroup under $times$, distributive.]
-#defn[Subring Test][$a - b in S$ and $a b in S$ $forall a,b in S$.]
-#defn[Quaternions $HH$][$a + b i + c j + d k$, $i^2 = j^2 = k^2 = -1$, $i j = k$, $j k = i$, $k i = j$; anti-commutative ($j i = -k$ etc.).]
-#thm[Prop 3.1][$HH$ is non-commutative division ring. $u^(-1) = overline(u) \/ ||u||^2$ where $overline(u) = a - b i - c j - d k$, $||u|| = sqrt(a^2 + b^2 + c^2 + d^2)$.]
+== Rings & Fields
+
+#defn[Ring][$(R, +, times)$ is an abelian group under addition, a semigroup under multiplication, and distributive.]
+#defn[Subring Test][For a non-empty subset $S$, $S$ is a subring if $a - b in S$ and $a b in S$ for all $a,b in S$.]
+#defn[Quaternions $HH$][Elements $a + b i + c j + d k$ with $i^2 = j^2 = k^2 = -1$, $i j = k$, $j k = i$, $k i = j$. They are anti-commutative (e.g., $j i = -k$).]
+#thm[Quaternion Properties][$HH$ is a non-commutative division ring. The inverse is $u^(-1) = overline(u) \/ ||u||^2$ where $overline(u) = a - b i - c j - d k$ and $||u|| = sqrt(a^2 + b^2 + c^2 + d^2)$.]
 *Properties:* $overline(u v) = overline(v) overline(u)$; $||u v|| = ||u|| dot ||v||$.
-#thm[Euler's Four-Square (Prop 3.2)][$(a^2+b^2+c^2+d^2)(e^2+f^2+g^2+h^2)$ is a sum of 4 squares.]
+#thm[Euler's Four-Square Identity][$(a^2+b^2+c^2+d^2)(e^2+f^2+g^2+h^2)$ is a sum of 4 squares.]
 *Wedderburn's Theorem:* Every finite division ring is a field.
 
-== §3.2 Ideals & Ring Decompositions
+== Ideals & Ring Decompositions
 
-#defn[Ideals][Left: $r a in I$; right: $a r in I$; two-sided: both. *Simple ring*: no non-trivial proper two-sided ideals.]
-#thm[Prop 3.3][$M_n(D)$ is simple for any division ring $D$.]
-#prf[Non-zero $A in J$ has $a_(r s) eq.not 0$ (invertible). $a_(r s)^(-1) E_(i r) A E_(s j) = E_(i j)$, so all $E_(i j) in J$, $I_n in J$, $J = M_n(D)$.]
-#defn[Idempotents][$e^2 = e$. *Central*: $e r = r e$ $forall r$. *Orthogonal*: $e f = f e = 0$. *Primitive*: can't decompose as sum of two non-zero orthogonal idempotents.]
-#thm[Prop 3.4][$e$ idempotent $=> 1 - e$ idempotent, and $e(1-e) = 0$.]
-#thm[Prop 3.5][If ideal $I$ has unity $e$, then $e$ is central idempotent, $I = e R$.]
-#thm[Prop 3.6][If $R = I + J$, $I inter J = {0}$, then $R tilde.eq I times J$.]
-#thm[Prop 3.7][Central idempotent $e$: $R = e R plus.o (1-e)R$.]
+#defn[Ideals][An ideal $I$ must be an additive subgroup of $R$. It is a *left* ideal if $r a in I$ for all $r in R, a in I$; a *right* ideal if $a r in I$; and a *two-sided* ideal if both hold. A ring is *simple* if it has no non-trivial proper two-sided ideals.]
+#thm[Matrix Ring Simplicity][$M_n(D)$ is simple for any division ring $D$.]
+#prf[Let $J$ be a non-zero ideal containing a matrix $A$ with $a_(r s) eq.not 0$. Then $a_(r s)^(-1) E_(i r) A E_(s j) = E_(i j)$. This shows all elementary matrices $E_(i j) in J$, meaning the identity $I_n in J$, so $J = M_n(D)$.]
+#defn[Idempotents][An element $e$ with $e^2 = e$. 
+- *Central*: $e r = r e$ for all $r in R$. 
+- *Orthogonal*: $e f = f e = 0$. 
+- *Primitive*: Cannot be decomposed as a sum of two non-zero orthogonal idempotents.]
+#thm[Idempotent Properties][If $e$ is idempotent, then $1 - e$ is also idempotent, and $e(1-e) = 0$.]
+#thm[Ideals with Unity][If an ideal $I$ has a unity element $e$, then $e$ is a central idempotent in $R$, and $I = e R$.]
+#thm[Ring Decomposition][If $R = I + J$ with $I inter J = {0}$, then $R tilde.eq I times J$.]
+#thm[Idempotent Decomposition][For a central idempotent $e$, $R = e R plus.o (1-e)R$.]
 
-*Key results:* $e R e$ is subring with unity $e$; $e R e = {a : e a = a e = a}$. $e + (1-e)r e$ is idempotent. $1 - 2e$ is self-inverse unit.
-$ZZ_18$: $9^2 = 9$; $ZZ_18 = 9 ZZ_18 plus.o 10 ZZ_18$.
-$ZZ_30$ idempotents: ${0,1,6,10,15,16,21,25}$; decomp: $ZZ_30 = 6 ZZ_30 plus.o 10 ZZ_30 plus.o 15 ZZ_30$.
-In simple ring with unity, every non-zero central element is a unit.
+*Key Results:* 
+- $e R e$ is a subring with unity $e$, where $e R e = {a : e a = a e = a}$. 
+- $e + (1-e)r e$ is always an idempotent. 
+- $1 - 2e$ is a self-inverse unit.
+- In a simple ring with unity, every non-zero central element is a unit.
 
-== §3.3 Algebras
+*Examples:* 
+- $ZZ_18$: $9^2 = 9$; giving the decomposition $ZZ_18 = 9 ZZ_18 plus.o 10 ZZ_18$.
+- $ZZ_30$ idempotents: ${0,1,6,10,15,16,21,25}$. Decomposition: $ZZ_30 = 6 ZZ_30 plus.o 10 ZZ_30 plus.o 15 ZZ_30$.
 
-#defn[$K$-Algebra][$A$: vector space over $K$ with bilinear multiplication. Associative, with unity.]
-Examples: $RR$, $CC$: division algebras over $RR$; $M_n(K)$: $n^2$-dim; $HH$: 4-dim non-commutative division algebra over $RR$.
-#thm[Regular Representation (Prop 3.8)][Every $n$-dim assoc. algebra with unity over $K$ embeds in $M_n(K)$.]
-#prf[Define $lambda_x : a |-> x a$. Map $theta: x |-> C_x$ (matrix of $lambda_x$) is injective algebra homomorphism.]
-*Regular rep examples:* $CC$ over $RR$: $a + b i |-> mat(a, -b; b, a)$. Dual numbers: $a + b v |-> mat(a, 0; b, a)$.
+== Algebras
 
-#defn[Group Algebra $K G$][For finite $G = {x_1, dots, x_n}$, field $K$: $K G = {sum a_i x_i}$, dim $= n$.]
-$|F_3 C_2| = 9$; $|F_2 S_3| = 64$; $dim F_5 A_4 = 12$.
-#thm[Prop 3.9][$e = 1/(|G|) sum_(x in G) x$ is a central primitive idempotent. $K G = e K G plus.o (1-e) K G$; $dim_K(e K G) = 1$.]
-#prf[$x_i e = e$ (since $x_i$ permutes $G$). $e^2 = 1/n(x_1 e + dots + x_n e) = e$. $e K G = "span"{e}$, dim 1.]
-#prf[Primitive: if $e = f_1 + f_2$, $f_1 f_2 = 0$, then $e f_i = f_i$ forces $f_i in e K G = "span"{e}$, so $f_i = lambda_i e$; $lambda_1 + lambda_2 = 1$, $lambda_1 lambda_2 = 0$.]
+#defn[$K$-Algebra][An algebra $A$ is a vector space over a field $K$ equipped with a bilinear multiplication operation. It is assumed to be associative and have a unity.]
+*Examples:* $RR$ and $CC$ are division algebras over $RR$. $M_n(K)$ is an $n^2$-dimensional algebra. $HH$ is a 4-dimensional non-commutative division algebra over $RR$.
+#thm[Regular Representation][Every $n$-dimensional associative algebra with unity over $K$ embeds into $M_n(K)$.]
+#prf[Define left multiplication $lambda_x : a |-> x a$. The map $theta: x |-> C_x$ (where $C_x$ is the matrix of $lambda_x$) is an injective algebra homomorphism.]
+*Examples:* $CC$ over $RR$: $a + b i |-> mat(a, -b; b, a)$. Dual numbers: $a + b v |-> mat(a, 0; b, a)$.
 
-*$K C_n$:* $g - 1$ is zero divisor: $(g-1)(1 + g + dots + g^(n-1)) = 0$. So $K C_n$ is not a division algebra.
+#defn[Group Algebra $K G$][For a finite group $G = {x_1, dots, x_n}$ and a field $K$, $K G = {sum a_i x_i | a_i in K}$, which has dimension $n$.]
+*Examples:* $|F_3 C_2| = 9$; $|F_2 S_3| = 64$; $op("dim") F_5 A_4 = 12$.
 
-*$F_2 C_3$:* 8 elements; $(1+g+g^2)^2 = 1+g+g^2$ (idempotent, not unit), so $(F_2 C_3)^*$ is not a group.
-*$CC C_3$:* $f = 1/3(1 + omega g + omega^2 g^2)$ ($omega = e^(2 pi i\/3)$) is idempotent, orthogonal to $e = 1/3(1+g+g^2)$.
+#thm[Maschke's Theorem (Partial)][Assuming $op("char")(K)$ does not divide $|G|$, $e = 1/(|G|) sum_(x in G) x$ is a central primitive idempotent. The algebra decomposes as $K G = e K G plus.o (1-e) K G$, with $op("dim")_K (e K G) = 1$.]
+#prf[
+_Idempotent:_ Since multiplying by $x_i$ permutes the group elements, $x_i e = e$. Then $e^2 = 1/n(x_1 e + dots + x_n e) = e$. The space $e K G = "span"{e}$ has dimension 1. 
+
+_Primitive:_ If $e = f_1 + f_2$ with $f_1 f_2 = 0$, then $e f_i = f_i$. This forces $f_i in e K G = "span"{e}$, so $f_i = lambda_i e$. This gives $lambda_1 + lambda_2 = 1$ and $lambda_1 lambda_2 = 0$, meaning one is $0$ and the other is $1$, so $e$ cannot be decomposed.]
+
+*Group Algebra Properties:*
+- *$K C_n$:* $g - 1$ is a zero divisor because $(g-1)(1 + g + dots + g^(n-1)) = 0$. Thus, $K C_n$ is never a division algebra for $n > 1$.
+- *$F_2 C_3$:* Contains 8 elements. The element $(1+g+g^2)$ is idempotent but not a unit. Thus, the set of non-zero elements of $F_2 C_3$ under multiplication is not a group.
+- *$CC C_3$:* $f = 1/3(1 + omega g + omega^2 g^2)$ (where $omega = e^(2 pi i\/3)$) is an idempotent orthogonal to $e = 1/3(1+g+g^2)$.
 
 == Key Techniques
 
-*Order counting:* Elements of order $k$ come in groups of $phi(k)$ (from cyclic subgroups). E.g., order 55 non-cyclic: $2r + 5s = 27$.
-*Even order has odd \# elements of order 2:* pair non-self-inverse elements.
-*If $|H|^2 > |G|$ and $|J|^2 > |G|$: $H inter J eq.not {e}$.*
-*$S_n$ generated by:* ${(1 space i) : 2 lt.eq i lt.eq n}$ or ${(2 space 3 dots n), (1 space 2)}$.
-*Every element of $A_n$ ($n gt.eq 3$):* product of 3-cycles. $(i j)(i k) = (i k j)$; $(i j)(k ell) = (i j k)(j k ell)$.
-*$D_6 tilde.eq D_3 times C_2$.*
-*$A_4$ has no subgroup of order 6.*
-*\#conj. classes = $1/(|G|) sum |C_G(g)|$.*
+- *Order counting:* Elements of order $k$ come in groups of $phi(k)$ (from cyclic subgroups). For example, a non-cyclic group of order 55 has $2r$ elements of order 5 and $5s$ elements of order 11, giving $2r + 5s = 54$.
+- *Order 2 elements:* A group of even order has an odd number of elements of order 2 (since non-self-inverse elements pair up).
+- *Subgroup Intersections:* If $|H|^2 > |G|$ and $|J|^2 > |G|$, then $H inter J eq.not {e}$ because $|H inter J| = (|H||J|)\/|H J| gt.eq (|H||J|)\/|G| > 1$.
+- *$S_n$ Generators:* $S_n$ is generated by the transpositions ${(1 space i) : 2 lt.eq i lt.eq n}$, or by the set of two elements ${(2 space 3 dots n), (1 space 2)}$.
+- *$A_n$ Generators:* Every element of $A_n$ (for $n gt.eq 3$) is a product of 3-cycles. Key identities (using right-to-left composition): $(i space j)(i space k) = (i space k space j)$ and $(i space j)(k space ell) = (i space j space k)(j space k space ell)$.
+- *$D_6$ Decomposition:* $D_6 tilde.eq D_3 times C_2$.
+- *$A_4$ Subgroups:* $A_4$ has no subgroup of order 6.
+- *Conjugacy Classes:* The number of conjugacy classes is $1/(|G|) sum_(g in G) |C_G(g)|$.
 
 == Exam Strategies
 
-*Sylow analysis:* Write $|G| = p^k m$; list divisors of $m$ that are $equiv 1 (mod p)$; use element counting to eliminate cases.
-*Simple group test:* Check index arguments ($|G| | m!$), Sylow uniqueness, conjugacy class unions, order $2m$ ($m$ odd).
-*Burnside:* List symmetries, compute cycle index of each, apply formula.
-*Quotient identification:* Use 1st Isom. Thm; find kernel and image.
-*Ring decomposition:* Find central idempotents $e_1, dots, e_k$ with $sum e_i = 1$, pairwise orthogonal; $R = e_1 R plus.o dots plus.o e_k R$.
+- *Sylow analysis:* Write $|G| = p^k m$. List the divisors of $m$ that are $equiv 1 (mod p)$. Use element counting to eliminate cases where Sylow subgroups intersect trivially.
+- *Simple group test:* Check index bounds ($|G| | m!$), Sylow uniqueness, whether a union of conjugacy classes forms a subgroup, and the $2m$ (with $m$ odd) parity test.
+- *Burnside applications:* Explicitly list the symmetries, compute the cycle index of each permutation, and apply the colouring formula.
+- *Quotient identification:* Use the 1st Isomorphism Theorem by finding a suitable homomorphism, identifying its kernel and image.
+- *Ring decomposition:* Find central idempotents $e_1, dots, e_k$ that sum to $1$ ($e_1 + dots + e_k = 1$) and are pairwise orthogonal ($e_i e_j = 0$). Then $R = e_1 R plus.o dots plus.o e_k R$.
