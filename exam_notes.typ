@@ -39,7 +39,7 @@
 #defn[Element Order][$o(a)$ is the smallest $k in NN^+$ s.t. $a^k = e$ (if no such $k$ exists, order is infinite). Note: By Lagrange, $o(a) | |G|$.]
 #defn[Homomorphism][Map $phi: G_1 -> G_2$ preserving op. *Kernel*: $ker phi = {g : phi(g) = e}$. *Image*: $phi(G_1)$. Injective iff $ker phi = {e}$. *Surjective* if $phi(G_1)=G_2$. *Iso* if bijective. *Auto* if iso $G -> G$.]
 
-*Group Families:* *Cyclic* $C_n = chevron.l g : g^n = e chevron.r tilde.eq (ZZ_n, +_n)$, $phi(n)$ generators, unique subgp of order $d | n$. *Units* $U_n$: units of $(ZZ_n, times_n)$, order $phi(n)$. *$op("GL")(n,R)$, $op("SL")(n,R)$*: general/special linear. *$R_n$*: upper triangular $n times n$ w/ 1s on diag. *$S_n$*: symmetric gp, order $n!$ (has cycle notation & sign function). *$A_n$*: alternating, order $n! / 2$. *$D_n$*: dihedral, regular $n$-gon syms, order $2n$. *Direct products*: $C_m times C_n tilde.eq C_(m n)$ iff $op("gcd")(m,n) = 1$.
+*Group Families:* *Cyclic* $C_n = chevron.l g : g^n = e chevron.r tilde.eq (ZZ_n, +_n)$, $phi(n)$ generators, unique subgp of order $d | n$. *Units* $U_n$: units of $(ZZ_n, times_n)$, order $phi(n)$. *$op("GL")(n,R)$, $op("SL")(n,R)$*: general/special linear. *$R_n$* (course-specific): upper triangular $n times n$ w/ 1s on diag. *$S_n$*: symmetric gp, order $n!$ (has cycle notation & sign function). *$A_n$*: alternating, order $n! / 2$. *$D_n$*: dihedral, regular $n$-gon syms, order $2n$. *Direct products*: $C_m times C_n tilde.eq C_(m n)$ iff $op("gcd")(m,n) = 1$.
 
 == Generators & Presentations
 
@@ -51,13 +51,13 @@
 *Groups of order 8:* 5 total: $C_8$, $C_4 times C_2$, $C_2^3$ (abelian); $D_4$, $Q_4$ (non-abelian).
 _Derivation:_ For non-abelian order 8, non-identity elements have order 2 or 4. Pick $a$ of order 4, $b in.not chevron.l a chevron.r$. $G = {e, a, a^2, a^3, b, a b, a^2 b, a^3 b}$. $b^2 in chevron.l a chevron.r$ commutes w/ $b$, so $b^2 = e$ or $a^2$. Since $G$ is non-abelian, $b$ acts non-trivially on $chevron.l a chevron.r$, forcing $b a b^(-1) = a^(-1)$. If $b^2 = e => D_4$. If $b^2 = a^2 => Q_4$.
 
-#defn[Dicyclic Group][$Q_n$: order $2n$ ($n$ even), $chevron.l a,b | a^n = e, b^2 = a^(n/2), b a b^(-1) = a^(-1) chevron.r$. For $Q_4$, Cayley table easily derived from relations.]
+#defn[Dicyclic Group][$Q_n$: order $2n$ ($n$ even), $chevron.l a,b | a^n = e, b^2 = a^(n/2), b a b^(-1) = a^(-1) chevron.r$. (Note: $Q_n$ order $2n$ is course-specific notation, often $op("Dic")_(n/2)$). For $Q_4$, Cayley table easily derived from relations.]
 
 == Cosets, Products, Quotients
 
 #defn[Cosets][Left coset $a H = {a h : h in H}$, right $H a$. Cosets partition $G$.]
 #defn[Normal Subgroup][$H lt.tri.eq G$ if $a H = H a quad forall a in G$. Equiv: $a H a^(-1) = H quad forall a$. Index 2 is normal. Kernels are normal.]
-#thm[Normality via Generators][$H lt.tri.eq G$ iff $g h g^(-1) in H quad forall g$ in gen. set for $G$, $forall h$ in gen. set for $H$.]
+#thm[Normality via Generators][$H lt.tri.eq G$ iff $g h g^(-1) in H quad forall g$ in gen. set for $G$, $forall h$ in gen. set for $H$ (suffices to check on generating sets).]
 #thm[Conjugation Power Rule][$(b a b^(-1))^n = b a^n b^(-1)$; if $b a b^(-1) = a^r$ then $b^n a b^(-n) = a^(r^n)$.]
 #thm[Subgroup Product Theorem][
 $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J lt.eq G$. If both $lt.tri.eq G => H J lt.tri.eq G$.]
@@ -71,7 +71,7 @@ $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J
 #thm[Correspondence Theorem][Subgroups of $G \/ N$ are $H \/ N$ for $H lt.eq G$ containing $N$. $H \/ N lt.tri.eq G \/ N <=> H lt.tri.eq G$, and $(G \/ N)\/(H \/ N) tilde.eq G \/ H$ (*3rd Isom. Thm*).]
 #thm[2nd Isomorphism Theorem][If $H lt.eq G$ and $N lt.tri.eq G$, then $H\/(H inter N) tilde.eq H N \/ N$.]
 #thm[Quotient Subgroups][If $G$ is finite and $G \/ N$ is cyclic, $G$ has a subgroup $tilde.eq G \/ N$.]
-#prf[If $g N$ generates $G \/ N$ with order $m$, $g$ has order $r = k m$ (since quotient element order divides original). Subgroup $chevron.l g^k chevron.r tilde.eq G \/ N$.]
+#prf[If $g N$ generates $G \/ N$ with order $m$, $g$ has order $r = k m$ (since quotient element order divides original). Then $o(g^k) = r/k = m$, so subgroup $chevron.l g^k chevron.r tilde.eq G \/ N$.]
 
 == Finite Abelian Groups
 
@@ -124,7 +124,7 @@ $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J
 
 == Conjugacy in $S_n$
 
-#defn[Cycle Type][$1^(m_1) 2^(m_2) dots n^(m_n)$ where $m_i$ = \# $i$-cycles. *Cycle index* $op("cyc")(sigma) = sum m_i$.]
+#defn[Cycle Type][$1^(m_1) 2^(m_2) dots n^(m_n)$ where $m_i$ = \# $i$-cycles. *Number of cycles* $op("cyc")(sigma) = sum m_i$.]
 #thm[Conjugation of Cycles][$pi (i_1, dots, i_k) pi^(-1) = (pi(i_1), dots, pi(i_k))$. Conjugate in $S_n <=>$ same cycle type.]
 #thm[Class Sizes in $S_n$][Class size is $n! \/ (1^(m_1) 2^(m_2) dots n^(m_n) m_1! dots m_n!)$. Centraliser order is denominator.]
 #thm[Subgroups of $S_n$][If $H lt.eq S_n$, either $H subset.eq A_n$ or $|H inter A_n| = |H|\/2$.]
@@ -156,7 +156,7 @@ $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J
 #thm[Coprime Automorphisms][If $H lt.tri.eq G$ cyclic, $J lt.eq G$, and $phi(|H|)$ coprime to $|J|$, then $h j = j h quad forall h, j$. If $phi(|H|)$ coprime to $|G|$ then $H subset.eq Z(G)$.]
 #prf[Action defines homomorphism $theta: J -> op("Aut")(H)$. $|op("Aut")(H)| = phi(|H|)$ coprime to $|J| => |theta(J)| = 1$.]
 
-*Key Sylow Examples:* #h(1em) *Order 133 ($7 times 19$):* $w_19 = 1, w_7 = 1$. Both normal, $G tilde.eq C_(133)$. #h(1em) *Order 45 ($3^2 times 5$):* $w_5 = 1, w_3 = 1$. Groups: $C_(45), C_3 times C_(15)$. #h(1em) *Order 455 ($5 times 7 times 13$):* $w_13 = 1, w_7 = 1 => C_(91) tilde.eq P_7 P_13 lt.tri.eq G$. $G tilde.eq C_(91) times.r C_5$. $op("Aut")(C_(91)) = 72$ coprime to 5. Semidirect product must be direct (abelian), forcing $w_5 = 1$. $G tilde.eq C_(455)$.
+*Key Sylow Examples:* #h(1em) *Order 133 ($7 times 19$):* $w_19 = 1, w_7 = 1$. Both normal, $G tilde.eq C_(133)$. #h(1em) *Order 45 ($3^2 times 5$):* $w_5 = 1, w_3 = 1$. Abelian groups: $C_(45), C_3 times C_(15)$. #h(1em) *Order 455 ($5 times 7 times 13$):* $w_13 = 1, w_7 = 1 => C_(91) tilde.eq P_7 P_13 lt.tri.eq G$. $G tilde.eq C_(91) times.r C_5$. $op("Aut")(C_(91)) = 72$ coprime to 5. Semidirect product must be direct (abelian), forcing $w_5 = 1$. $G tilde.eq C_(455)$.
 
 == Simple Groups
 
@@ -178,8 +178,8 @@ $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J
 #defn[Ring][$(R, +, times)$ abelian gp under $+$, semigroup under $times$, distributive. *Commutative*: $a b = b a$. *Unity*: exists $1$ s.t. $1 a = a 1 = a$. *Unit*: elt w/ mult. inverse. *Division Ring*: unity + all non-zero are units. *Field*: commutative division ring.]
 #defn[Subring Test][Non-empty $S$ is subring if $a - b in S$ and $a b in S quad forall a,b$.]
 #defn[Quaternions $HH$][$a + b i + c j + d k$, $i^2 = j^2 = k^2 = -1, i j = k, j k = i, k i = j$. Non-commutative.]
-#thm[Quaternion Properties][$HH$ is non-commutative division ring. $u^(-1) = overline(u) \/ ||u||^2$ where $overline(u) = a - b i - c j - d k, ||u|| = sqrt(a^2 + b^2 + c^2 + d^2)$.]
-*Properties:* $overline(u v) = overline(v) overline(u)$; $||u v|| = ||u|| dot ||v||$.
+#thm[Quaternion Properties][$HH$ is non-commutative division ring. $q^(-1) = overline(q) / ||q||^2$ where $q = a+b i+c j+d k, overline(q) = a - b i - c j - d k, ||q|| = sqrt(a^2 + b^2 + c^2 + d^2)$.]
+*Properties:* $overline(u v) = overline(v) overline(u), ||u v|| = ||u|| ||v||$.
 #thm[Euler's Four-Square Identity][$(a^2+b^2+c^2+d^2)(e^2+f^2+g^2+h^2)$ is sum of 4 squares.]
 *Wedderburn's Theorem:* Every finite division ring is a field.
 
@@ -219,4 +219,4 @@ $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J
 
 == Exam Strategies
 
-*Sylow analysis:* $|G| = p^k m$. List divisors of $m$ $equiv 1 (mod p)$. Use element counting to eliminate trivial intersections. *Simple group test:* Index bounds ($|G| | m!$), Sylow uniqueness, union of classes, parity test ($2m$, $m$ odd). *Burnside applications:* List symmetries, compute cycle index, apply formula. *Quotient identification:* 1st Isom Thm via homomorphism. *Ring decomposition:* Central idempotents $e_1, dots, e_k$ satisfy $sum e_i = 1$ and orthogonal ($e_i e_j = 0$). $R = e_1 R plus.o dots plus.o e_k R$.
+*Sylow analysis:* $|G| = p^k m$. List divisors of $m$ $equiv 1 (mod p)$. Use element counting to eliminate trivial intersections. *Simple group test:* Index bounds ($|G| | m!$), Sylow uniqueness, union of classes, parity test ($2m$, $m$ odd). *Burnside applications:* List symmetries, compute number of cycles, apply formula. *Quotient identification:* 1st Isom Thm via homomorphism. *Ring decomposition:* Central idempotents $e_1, dots, e_k$ satisfy $sum e_i = 1$ and orthogonal ($e_i e_j = 0$). $R = e_1 R plus.o dots plus.o e_k R$.
