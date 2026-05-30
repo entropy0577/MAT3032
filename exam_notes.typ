@@ -156,7 +156,7 @@ $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J
 #thm[Coprime Automorphisms][If $H lt.tri.eq G$ cyclic, $J lt.eq G$, and $phi(|H|)$ coprime to $|J|$, then $h j = j h quad forall h, j$. If $phi(|H|)$ coprime to $|G|$ then $H subset.eq Z(G)$.]
 #prf[Action defines homomorphism $theta: J -> op("Aut")(H)$. $|op("Aut")(H)| = phi(|H|)$ coprime to $|J| => |theta(J)| = 1$.]
 
-*Key Sylow Examples:* #h(1em) *Order 133 ($7 times 19$):* $w_19 = 1, w_7 = 1$. Both normal, $G tilde.eq C_(133)$. #h(1em) *Order 45 ($3^2 times 5$):* $w_5 = 1, w_3 = 1$. Abelian groups: $C_(45), C_3 times C_(15)$. #h(1em) *Order 455 ($5 times 7 times 13$):* $w_13 = 1, w_7 = 1 => C_(91) tilde.eq P_7 P_13 lt.tri.eq G$. $G tilde.eq C_(91) times.r C_5$. $op("Aut")(C_(91)) = 72$ coprime to 5. Semidirect product must be direct (abelian), forcing $w_5 = 1$. $G tilde.eq C_(455)$.
+*Key Sylow Examples:* #h(1em) *Order 133 ($7 times 19$):* $w_19 = 1, w_7 = 1$. Both normal, $G tilde.eq C_(133)$. #h(1em) *Order 45 ($3^2 times 5$):* $w_5 = 1, w_3 = 1$. All groups abelian: $C_(45), C_3 times C_(15)$. #h(1em) *Order 455 ($5 times 7 times 13$):* $w_13 = 1, w_7 = 1 => C_(91) tilde.eq P_7 P_13 lt.tri.eq G$. $G tilde.eq C_(91) times.r C_5$. $op("Aut")(C_(91)) = 72$ coprime to 5. Semidirect product must be direct (abelian), forcing $w_5 = 1$. $G tilde.eq C_(455)$.
 
 == Simple Groups
 
