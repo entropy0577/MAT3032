@@ -100,9 +100,9 @@ $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J
 #thm[Orbit-Stabiliser Theorem][Bijection $g(x) <-> g G_x$. For finite $G$: $|O(x)| dot |G_x| = |G|$.]
 #prf[$h(x) = g(x) <=> g^(-1)h in G_x <=> h in g G_x$.]
 #thm[Orbit Decomposition][$|X| = |op("Fix")(G)| + sum_(i=1)^n [G:G_(x_i)]$ (sum over non-trivial orbit reps).]
-#thm[Action Homomorphisms][Action on set size $m =>$ homomorphism $G -> S_m$ w/ kernel $tilde(G)_X = inter G_x$. Subgroup index $m =>$ homomorphism $G -> S_m$ acting on left cosets, kernel $subset.eq$ subgroup.]
+#thm[Action Homomorphisms][Action on set size $m =>$ homomorphism $G -> S_m$ w/ kernel $tilde(G)_X = inter_(x in X) G_x$. Subgroup index $m =>$ homomorphism $G -> S_m$ acting on left cosets, kernel $subset.eq$ subgroup.]
 #thm[Cayley's Theorem][Every group of order $n$ embeds in $S_n$.]
-*Transitive Action:* $O(x) = X$ $forall x$. (e.g. $(RR, +)$ acting on unit circle $S^1$ via $x(z) = e^(i x)z$).
+*Transitive Action:* $O(x) = X$ $forall x$. (e.g. $(RR, +)$ acting on unit circle $S^1$ via $x(z) = e^(i x) dot z$).
 #thm[Smallest Prime Index][If $p$ is the smallest prime factor of $|G|$, any subgroup of index $p$ is normal.]
 #prf[Action on $p$ cosets gives homom $G -> S_p$. Image size divides $p!$ and $|G|$. Since prime factors of $|G| gt.eq p$, $|G\/"ker"| = p$, forcing kernel to equal subgroup.]
 #thm[Groups of Order $p^2$][Every group of order $p^2$ is abelian ($tilde.eq C_(p^2)$ or $C_p times C_p$).]
@@ -176,7 +176,7 @@ $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J
 
 #defn[Ideals][$I$ is additive subgroup of $R$. *Left*: $r a in I$. *Right*: $a r in I$. *Two-sided*: both. *Simple* ring: no non-trivial proper two-sided ideals.]
 #thm[Matrix Ring Simplicity][$M_n(D)$ is simple for any division ring $D$.]
-#prf[$J$ contains $A$ w/ $a_(r s) eq.not 0$. Then $a_(r s)^(-1) E_(i r) A E_(s j) = E_(i j) in J$. $I_n in J => J = M_n(D)$.]
+#prf[$J$ contains $A$ w/ $a_(r s) eq.not 0$. Then #box[$a_(r s)^(-1) E_(i r) A E_(s j) = E_(i j) in J$]. $I_n in J => J = M_n(D)$.]
 #defn[Idempotents][$e^2 = e$. *Central*: $e r = r e$. *Orthogonal*: $e f = f e = 0$. *Primitive*: cannot decompose as sum of two non-zero orthogonal idempotents.]
 #thm[Idempotent Properties][In ring with unity $1$, $e^2 = e => (1-e)^2 = 1-e$, $e(1-e) = 0$.]
 #thm[Ideals with Unity][If ideal $I$ has unity $e$, $e$ is central idempotent, $I = e R$.]
@@ -189,7 +189,7 @@ $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J
 *Examples:* $RR, CC$ division algebras over $RR$. $M_n(K)$ is $n^2$-dim. $HH$ 4-dim non-comm division algebra over $RR$.
 #thm[Regular Representation][Every $n$-dim assoc algebra w/ unity over $K$ embeds in $M_n(K)$.]
 #prf[Left mult $lambda_x : a |-> x a$. Map $theta: x |-> C_x$ (matrix of $lambda_x$) is injective homom.]
-*Examples:* $CC$ over $RR$: $a + b i |-> mat(a, -b; b, a)$. Dual numbers: $a + b v |-> mat(a, 0; b, a)$.
+*Examples:* $CC$ over $RR$: #box[$a + b i |-> mat(a, -b; b, a)$]. Dual numbers: #box[$a + b v |-> mat(a, 0; b, a)$].
 
 #defn[Group Algebra $K G$][Finite group $G = {x_1, dots, x_n}$, field $K$, $K G = {sum a_i x_i | a_i in K}$ with mult extended from $G$ distributively, dim $n$.]
 *Examples:* $|F_3 C_2| = 9$; $|F_2 S_3| = 64$; $op("dim") F_5 A_4 = 12$.
