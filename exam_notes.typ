@@ -1,17 +1,18 @@
 // MAT3032 Advanced Algebra — A4 Landscape Exam Notes
 #set page(paper: "a4", flipped: true, margin: (top: 0.2cm, bottom: 0.2cm, left: 0.2cm, right: 0.2cm))
-#set text(font: "New Computer Modern", size: 6.5pt, weight: "regular")
-#set par(justify: true, leading: 0.2em, spacing: 0.1em)
+#set text(font: "FiraGO", size: 6.5pt, weight: "regular")
+#set par(justify: true, leading: 0.3em, spacing: 0.3em)
 #set heading(numbering: none)
-#show heading.where(level: 1): set text(size: 7.5pt, weight: "bold")
-#show heading.where(level: 2): set text(size: 7pt, weight: "bold")
-#show heading.where(level: 3): set text(size: 7pt, weight: "bold")
-#show heading: set block(above: 0.2em, below: 0.2em)
+#show heading.where(level: 1): set text(size: 7pt, weight: "bold")
+#show heading.where(level: 2): set text(size: 6.5pt, weight: "semibold")
+#show heading.where(level: 3): set text(size: 6.5pt, weight: "bold")
+#show heading: set block(above: 0.35em, below: 0.4em)
+#show heading: set text(blue)
 #set enum(indent: 0pt, body-indent: 2pt, spacing: 0.15em)
 #set list(indent: 0pt, body-indent: 2pt, spacing: 0.15em)
 #show: columns.with(4, gutter: 4pt)
-#show math.equation: set text(font: "New Computer Modern Math")
-#show math.equation.where(block: false): set text(bottom-edge: "bounds", top-edge: "bounds")
+#show math.equation: set text(font: "Fira Math")
+#show math.equation.where(block: false): set text(top-edge: "bounds")
 
 #let thm(title, body) = block(
   width: 100%, inset: (x: 1.5pt, y: 1pt), radius: 1pt,
@@ -73,8 +74,6 @@ $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J
 #thm[Quotient Subgroups][If $G$ is finite and $G \/ N$ is cyclic, $G$ has a subgroup $tilde.eq G \/ N$.]
 #prf[If $g N$ generates $G \/ N$ with order $m$, $g$ has order $r = k m$ (since quotient element order divides original). Then $o(g^k) = r/k = m$, so subgroup $chevron.l g^k chevron.r tilde.eq G \/ N$.]
 
-== Finite Abelian Groups
-
 #thm[Fundamental Theorem of Finite Abelian Groups][Every finite abelian group $tilde.eq$ direct product of cyclics:
 *Primary:* $C_(p_1^(n_1)) times dots times C_(p_r^(n_r))$;
 *Invariant Factor:* $C_(q_1) times dots times C_(q_s)$ with $q_i | q_(i+1)$.]
@@ -96,8 +95,6 @@ $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J
 
 = Actions, Conjugacy, Sylow
 
-== Group Actions
-
 #defn[Left Action][Map $(g,x) |-> g(x) in X$ w/ $e(x) = x$ and $g_1(g_2(x)) = (g_1 g_2)(x)$.]
 #defn[Orbit and Stabiliser][*Orbit*: $O(x) = {g(x) : g in G}$. *Stabiliser*: $G_x = {g : g(x) = x} lt.eq G$. *Fixed pts*: $op("Fix")(g) = {x : g(x) = x}$. $op("Fix")(G) = {x : g(x)=x quad forall g}$.]
 #thm[Orbit-Stabiliser Theorem][Bijection $g(x) <-> g G_x$. For finite $G$: $|O(x)| dot |G_x| = |G|$.]
@@ -110,8 +107,6 @@ $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J
 #prf[Action on $p$ cosets gives homom $G -> S_p$. Image size divides $p!$ and $|G|$. Since prime factors of $|G| gt.eq p$, $|G\/"ker"| = p$, forcing kernel to equal subgroup.]
 #thm[Groups of Order $p^2$][Every group of order $p^2$ is abelian ($tilde.eq C_(p^2)$ or $C_p times C_p$).]
 
-== Conjugacy
-
 #defn[Conjugacy Class][$x^G = {g x g^(-1) : g in G}$ (orbit under conjugation).]
 #defn[Centraliser and Centre][*Centraliser*: $C_G(x) = {g : g x = x g}$. *Centre*: $Z(G) = {g : g x = x g quad forall x} lt.tri.eq G$.]
 #thm[Class Equation][$|G| = |Z(G)| + sum_(x in T) [G : C_G(x)]$ ($T$ = non-central class reps).]
@@ -121,8 +116,6 @@ $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J
 *Conjugates:* A finite group $G$ is never a union of conjugates of a proper subgroup.
 #thm[Normal Union][$H lt.tri.eq G$ iff $H$ is a union of conjugacy classes.]
 #defn[Normaliser][$N_G(H) = {g : g H = H g}$. $H lt.tri.eq N_G(H)$, \# conjugates of $H$ is $[G : N_G(H)]$.]
-
-== Conjugacy in $S_n$
 
 #defn[Cycle Type][$1^(m_1) 2^(m_2) dots n^(m_n)$ where $m_i$ = \# $i$-cycles. *Number of cycles* $op("cyc")(sigma) = sum m_i$.]
 #thm[Conjugation of Cycles][$pi (i_1, dots, i_k) pi^(-1) = (pi(i_1), dots, pi(i_k))$. Conjugate in $S_n <=>$ same cycle type.]
@@ -134,8 +127,6 @@ $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J
 *Cycle Counting:* \# $k$-cycles in $S_n$ is $binom(n,k)(k-1)!$.
 *Conjugacy in $A_4$:* $(1, 2, 3)$ and $(1, 3, 2)$ NOT conjugate in $A_4$ (conjugator is odd).
 *Normal Subgroups of $S_4$:* ${e}$, $V = {e, (12)(34), (13)(24), (14)(23)}$, $A_4$, $S_4$.
-
-== Burnside's Formula
 
 #thm[Burnside's Lemma][\# orbits is $1/|G| sum_(g in G) |op("Fix")(g)|$.]
 #prf[Count pairs $g(x) = x$: $sum |op("Fix")(g)| = sum |G_x|$. By orbit-stab, $sum_(x in O) |G_x| = |G|$ per orbit, contributing exactly $|G|$ to total.]
@@ -173,8 +164,6 @@ $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J
 
 = Rings, Fields, Algebras
 
-== Rings & Fields
-
 #defn[Ring][$(R, +, times)$ abelian gp under $+$, semigroup under $times$, distributive. *Commutative*: $a b = b a$. *Unity*: exists $1$ s.t. $1 a = a 1 = a$. *Unit*: elt w/ mult. inverse. *Division Ring*: unity + all non-zero are units. *Field*: commutative division ring.]
 #defn[Subring Test][Non-empty $S$ is subring if $a - b in S$ and $a b in S quad forall a,b$.]
 #defn[Quaternions $HH$][$a + b i + c j + d k$, $i^2 = j^2 = k^2 = -1, i j = k, j k = i, k i = j$. Non-commutative.]
@@ -196,9 +185,6 @@ $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J
 
 *Key Results:* $e R e$ is subring w/ unity $e$, $e R e = {a : e a = a e = a}$. $e + (1-e)r e$ always idempotent. $1 - 2e$ is self-inverse unit. In simple ring w/ unity, non-zero central elements are units.
 *Examples:* $ZZ_(18)$: $9^2 = 9 => ZZ_(18) = 9 ZZ_(18) plus.o 10 ZZ_(18)$. $ZZ_(30)$ idempotents: ${0,1,6,10,15,16,21,25}$, decomp: $ZZ_(30) = 6 ZZ_(30) plus.o 10 ZZ_(30) plus.o 15 ZZ_(30)$.
-
-== Algebras
-
 #defn[$K$-Algebra][Vector space over $K$ w/ bilinear mult. Associative, has unity. *Division alg*: non-zero elts are units. *Subalg*, *Ideal*, *Simple* defined analogously to rings.]
 *Examples:* $RR, CC$ division algebras over $RR$. $M_n(K)$ is $n^2$-dim. $HH$ 4-dim non-comm division algebra over $RR$.
 #thm[Regular Representation][Every $n$-dim assoc algebra w/ unity over $K$ embeds in $M_n(K)$.]
@@ -216,7 +202,5 @@ $H J$ is a subgroup iff $J H = H J$. If $H lt.tri.eq G$ or $J lt.tri.eq G => H J
 == Key Techniques
 
 *Order counting:* Elts of order $k$ come in groups of $phi(k)$ (from cyclic subgps). Non-cyclic order 55 has $4r$ elts of order 5, $10s$ of order 11, $4r + 10s = 54$. *Order 2 elements:* Even order group has odd \# of order 2 elts (non-self-inverse pair up). *Subgroup Intersections:* If $|H|^2 > |G|$ and $|J|^2 > |G|$, then $H inter J eq.not {e}$ since $|H inter J| = (|H||J|) \/ |H J| gt.eq (|H||J|) \/ |G| > 1$. *$S_n$ Generators:* Transpositions ${(1, i) : 2 lt.eq i lt.eq n}$ or ${(2, 3, dots, n), (1, 2)}$. *$A_n$ Generators:* Elts of $A_n$ ($n gt.eq 3$) product of 3-cycles. Identities (right-to-left): $(i, j)(i, k) = (i, k, j)$ and $(i, j)(k, ell) = (i, j, k)(j, k, ell)$. *$D_6$ Decomposition:* $D_6 tilde.eq D_3 times C_2$. *$A_4$ Subgroups:* No subgroup order 6. *Conjugacy Classes:* \# classes is $1/|G| sum_(g in G) |C_G(g)|$.
-
-== Exam Strategies
 
 *Sylow analysis:* $|G| = p^k m$. List divisors of $m$ $equiv 1 (mod p)$. Use element counting to eliminate trivial intersections. *Simple group test:* Index bounds ($|G| | m!$), Sylow uniqueness, union of classes, parity test ($2m$, $m$ odd). *Burnside applications:* List symmetries, compute number of cycles, apply formula. *Quotient identification:* 1st Isom Thm via homomorphism. *Ring decomposition:* Central idempotents $e_1, dots, e_k$ satisfy $sum e_i = 1$ and orthogonal ($e_i e_j = 0$). $R = e_1 R plus.o dots plus.o e_k R$.
